@@ -28,7 +28,7 @@ public class DontUnderstand extends AnAction {
 
             String fixed = encoded.replaceAll("\\s+", "+");
 
-            String url = String.format("https://yandex.ru/search/?clid=2456108&text=%s+что+это&l10n=ru&lr=2", fixed);
+            String url = String.format("https://yandex.ru/search/?clid=2456108&text=%s+what+is+it&l10n=ru&lr=2", fixed);
             BrowserUtil.browse(url);
         } else {
             Messages.showMessageDialog("Selection is empty, could you please select something?", "DontUnderstandPlugin", Messages.getInformationIcon());
