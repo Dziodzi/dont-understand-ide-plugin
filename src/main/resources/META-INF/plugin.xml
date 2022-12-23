@@ -1,30 +1,49 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
     <id>com.dziodzi.DontUnderstandPlugin</id>
-
-    <!-- Public plugin name should be written in Title Case.
-         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
     <name>DontUnderstandPlugin</name>
+    <version>1.0</version>
+    <vendor email="dziodzi300@gmail.com" url="http://vk.com/dziodzi">Dziodzi</vendor>
 
-    <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
-  ]]></description>
+    <change-notes><![CDATA[
+      <ul>
+        <li>1.0 - Initial release</li>
+      </ul>
+    ]]>
+    </change-notes>
 
-    <depends>com.intellij.modules.platform</depends>
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="173.0"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
 
     <extensions defaultExtensionNs="com.intellij">
-
+        <toolWindow id="IDontUnderstand" secondary="true" icon="AllIcons.General.Modified" anchor="right"
+                    factoryClass="com.dziodzi.dontunderstandplugin.MyToolWindowFactory"/>
     </extensions>
+
     <actions>
-        <action id="com.dziodzi.dontunderstandplugin.PlugActions" class="com.dziodzi.dontunderstandplugin.PlugActions"
-                text="I Dont Understand!" description="Google selected code (Ctrl+\ Ctrl+T)">
-            <keyboard-shortcut keymap="$default" first-keystroke="ctrl BACK_SLASH" second-keystroke="ctrl T"/>
-        </action>
-        <action id="DontUnderstand" class="com.dziodzi.dontunderstandplugin.DontUnderstand"
-                text="I Don&#39;t Understand!" description="Google selected code">
+
+        <!-- Add action to search from file editor -->
+        <action id="Dziodzi.Idu.SearchAction.Editor"
+                class="com.dziodzi.dontunderstandplugin.SearchAction"
+                text="Search information about selected code in Yandex"
+                description="Search information about selected code in Yandex">
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt UP"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
         </action>
+
+        <!-- Add action to Tools Menu -->
+        <action id="Dziodzi.Idu.SearchAction.ToolsMenu"
+                class="com.dziodzi.dontunderstandplugin.SearchAction"
+                text="Search information about selected code in Yandex"
+                description="Search information about selected code in Yandex">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+
     </actions>
+
 </idea-plugin>
